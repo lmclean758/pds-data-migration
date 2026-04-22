@@ -15,7 +15,7 @@ Each non-empty part number in a PDS file gets its own row in the tracker. Re-run
 **Option B — Clone with Git**
 
 ```
-git clone https://github.com/lmclean758/pds-file-scanner.git
+git clone https://github.com/lmclean758/pds-data-migration.git
 ```
 
 ## Requirements
