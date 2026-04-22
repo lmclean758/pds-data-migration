@@ -4,6 +4,20 @@ Scans a folder of PDS Excel files and populates a tracker spreadsheet (`PDS_TRAC
 
 Each non-empty part number in a PDS file gets its own row in the tracker. Re-running the script is safe — existing rows are skipped.
 
+## Getting the Code
+
+**Option A — Download ZIP** *(recommended for most users)*
+
+1. Click the green **Code** button on the GitHub page
+2. Select **Download ZIP**
+3. Extract the folder anywhere on your machine
+
+**Option B — Clone with Git**
+
+```
+git clone https://github.com/lmclean758/pds-file-scanner.git
+```
+
 ## Requirements
 
 - Python 3.10+
@@ -31,3 +45,7 @@ python scan_pds.py "C:\Users\YourName\Desktop\PDS_FILES" "C:\Users\YourName\Desk
 ```
 
 The output file (`PDS_OUTPUT_<timestamp>.xlsx`) is saved to the same folder as the tracker.
+
+## License
+
+MIT License — free to use, modify, and distribute.
