@@ -10,7 +10,7 @@ Each non-empty part number in a PDS file gets its own row in the tracker. Re-run
 
 1. Click the green **Code** button on the GitHub page
 2. Select **Download ZIP**
-3. Extract the folder anywhere on your machine
+3. Extract the folder anywhere on your machine (use C:\ drive for safety)
 
 **Option B — Clone with Git**
 
