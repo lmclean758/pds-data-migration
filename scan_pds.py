@@ -22,6 +22,7 @@ How it works
   are skipped so you can re-run the script safely.
 """
 
+import argparse
 import os
 import re
 import glob
@@ -32,10 +33,6 @@ from datetime import datetime
 import openpyxl
 from openpyxl.utils import column_index_from_string, get_column_letter
 
-# ── Configuration ─────────────────────────────────────────────────────────────
-PDS_FOLDER = r'C:\Users\LukeMclean\Desktop\PDS_FILES_ALL'  # ADJUST THIS PATH
-TRACKER_FILE = r'C:\Users\LukeMclean\Desktop\PDS_TRACKER_FILE.xlsx'
-OUTPUT_FOLDER = r'C:\Users\LukeMclean\Desktop'
 
 TRACKER_SHEET = 'Packaging Proposal Template'
 INSTRUCTION_ROW = 6          # Row in tracker that holds the mapping instructions
@@ -251,17 +248,19 @@ def next_empty_row(tracker_ws) -> int:
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
-def main():
+def main(pds_folder: str, tracker_file: str):
     # Suppress noisy openpyxl warnings about unsupported extensions / drawings
     warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 
+    output_folder = os.path.dirname(os.path.abspath(tracker_file))
+
     # Build a dated output path and copy the tracker as the template
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-    output_file = os.path.join(OUTPUT_FOLDER, f'PDS_OUTPUT_{timestamp}.xlsx')
-    shutil.copy2(TRACKER_FILE, output_file)
+    output_file = os.path.join(output_folder, f'PDS_OUTPUT_{timestamp}.xlsx')
+    shutil.copy2(tracker_file, output_file)
     print(f"Output file : {output_file}")
 
-    print(f"Loading template: {TRACKER_FILE}")
+    print(f"Loading template: {tracker_file}")
     tracker_wb = openpyxl.load_workbook(output_file)
     tracker_ws = tracker_wb[TRACKER_SHEET]
 
@@ -289,7 +288,7 @@ def main():
 
     print(f"Writing new rows from row {write_row}\n")
 
-    pds_files = sorted(glob.glob(os.path.join(PDS_FOLDER, '*.xlsx')))
+    pds_files = sorted(glob.glob(os.path.join(pds_folder, '*.xlsx')))
     rows_added = 0
     skipped = 0
     errors = []
@@ -349,4 +348,8 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser(description='Scan PDS Excel files and populate the tracker.')
+    parser.add_argument('PDS_FOLDER', help='Path to the folder containing PDS .xlsx files')
+    parser.add_argument('TRACKER_FILE', help='Path to the tracker .xlsx template file')
+    args = parser.parse_args()
+    main(args.PDS_FOLDER, args.TRACKER_FILE)
