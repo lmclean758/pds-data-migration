@@ -20,12 +20,16 @@ git clone https://github.com/lmclean758/pds-data-migration.git
 
 ## Requirements
 
-- Python 3.10+
-- [openpyxl](https://pypi.org/project/openpyxl/)
+- Python 3.10+ — [download here](https://www.python.org/downloads/)
+- openpyxl
+
+Install openpyxl by opening **Command Prompt** or **PowerShell** (not the Python interpreter) and running:
 
 ```
 pip install openpyxl
 ```
+
+> **Note:** Make sure you see a regular terminal prompt (e.g. `C:\Users\YourName>`) and not the Python prompt (`>>>`) before running this command.
 
 ## Usage
 
