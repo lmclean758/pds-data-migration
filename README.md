@@ -33,6 +33,11 @@ pip install openpyxl
 
 ## Usage
 
+> **Important:** You must open Command Prompt or PowerShell and navigate into the folder where `scan_pds.py` is located before running the command. For example:
+> ```
+> cd "C:\Users\YourName\Documents\pds-data-migration"
+> ```
+
 ```
 python scan_pds.py <PDS_FOLDER> <TRACKER_FILE>
 ```
